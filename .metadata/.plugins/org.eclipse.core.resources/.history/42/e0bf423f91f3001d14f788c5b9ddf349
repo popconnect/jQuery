@@ -1,0 +1,29 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		document.getElementById('btn1').onclick = function() {
+			// 집합적 적용
+			//$('div').html('<i> 새로운 결과</i>');
+			$('div').html(function(index) {
+				return '<i> 새로운 결과 ' + index + '</i>'
+			});
+		}
+	});
+</script>
+</head>
+<body>
+시작단<input type='text' id='startdan' /> 
+~
+시작단<input type='text' id='enddan' /> 
+<button id='btn'>구구단 출력</button> 
+<br><hr><br>
+<div id='result'></div>
+</body>
+</html>

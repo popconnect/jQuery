@@ -1,0 +1,4 @@
+<%@ page language="java" contentType="text/plane; charset=UTF-8" pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:import var="jsondata" url="http://119.197.78.244:8080/AjaxEx02/ajax01.jsp/data/Json.jsp" />
+${jsondata}

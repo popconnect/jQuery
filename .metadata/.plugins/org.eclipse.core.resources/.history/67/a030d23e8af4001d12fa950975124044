@@ -1,0 +1,20 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	request.setCharacterEncoding( "utf-8" );
+
+	String strSido = request.getParameter( "sido" );
+	System.out.print(strSido);
+	ZipcodeDAO dao = new ZipcodeDAO();
+	ArrayList<ZipcodeTO> lists = dao.gugunList(strSido);
+	
+	StringBuilder sbXml = new StringBuilder();
+	for( ZipcodeTO to : lists ) {
+		String gugun = to.getGugun();
+		
+		sbXml.append( "<gugun>" + gugun + "</gugun>" );
+	}
+%>
+<address>
+<%=sbXml %>
+</address>    

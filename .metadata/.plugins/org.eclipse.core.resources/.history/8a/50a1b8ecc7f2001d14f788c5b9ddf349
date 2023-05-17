@@ -1,0 +1,27 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+window.onload = () => {
+	document.getElementById('btn').onclick = () => {
+		const strDong = document.getElementById('dong').value.trim();
+		
+		if(strDong.length < 2) {
+			if(strDong == '') {
+				alert('비정상');
+			} else {
+				alert('정상');
+			}
+		}
+	}
+}
+</script>
+</head>
+<body>
+<input type='text' name ='dong' ><button id='btn'>동이름 검색</button>
+</body>
+</html>

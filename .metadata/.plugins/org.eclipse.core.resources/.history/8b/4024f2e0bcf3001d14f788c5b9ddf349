@@ -1,0 +1,45 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+.c {color: red;}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('button#btn1').on('click', function() {
+			$.ajax({
+				url: './Data/xml1.jsp',
+				type: 'get',
+				//dataType: 'json',
+				success: function(xmlData) {
+					$('#result').empty(); // 이전 내용 초기화
+					
+					if (typeof xmlData === 'object') {
+						delete xmlData.success;
+						delete xmlData.status;
+						$.each(xmlData, function(key, value) {
+							$('#result').append('<p><strong>' + key + ':</strong> ' + value + '</p>');
+						});
+					} else {
+						$('#result').text(xmlData);
+					}
+				},
+				error: function(err) {
+					console.log('실패', err.status);
+				}
+			});
+		});
+	});
+</script>
+</head>
+<body>
+
+<button id="btn1">요청</button>
+<br><hr><br>
+<div id="result"></div>
+</body>
+</html>

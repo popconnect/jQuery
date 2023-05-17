@@ -1,0 +1,90 @@
+<%@page import="java.sql.SQLException"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="javax.naming.InitialContext"%>
+<%@page import="javax.naming.Context"%>
+<%@page import="javax.sql.DataSource"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="org.apache.ibatis.session.SqlSession"%>
+<%@page import="java.lang.ClassNotFoundException"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+
+	Connection conn = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	
+	try {
+		Context initContext = new InitialContext();
+		Context envContext = (Context) initContext.lookup("java:/comp/env");
+		DataSource ds = (DataSource) envContext.lookup("jdbc/yourDataSourceName");
+		conn = ds.getConnection();
+	
+		
+		String query = "SELECT name, publisher, author, price FROM books";
+        pstmt = conn.prepareStatement(query);
+        
+        // 쿼리 실행
+        rs = pstmt.executeQuery();
+        
+        // 결과 처리
+        StringBuilder xmlBuilder = new StringBuilder();
+        xmlBuilder.append("[");
+        while (rs.next()) {
+        	xmlBuilder.append("{");
+        	xmlBuilder.append("\"name\" : ");
+        	xmlBuilder.append("\"");
+        	xmlBuilder.append(rs.getString("name"));
+        	xmlBuilder.append("\",");
+        	xmlBuilder.append("\"publisher\" : ");
+        	xmlBuilder.append("\"");
+        	xmlBuilder.append(rs.getString("publisher"));
+        	xmlBuilder.append("\",");
+        	xmlBuilder.append("\"author\" : ");
+        	xmlBuilder.append("\"");
+        	xmlBuilder.append(rs.getString("author"));
+        	xmlBuilder.append("\",");
+        	xmlBuilder.append("\"price\" :");
+        	xmlBuilder.append("\"");
+        	xmlBuilder.append(rs.getString("price") + "원");
+        	xmlBuilder.append("\"");
+        	if(rs.next() == false) {
+            xmlBuilder.append("}");
+        	} else {
+            xmlBuilder.append("},");
+        	}
+        }
+        xmlBuilder.append("]");
+        
+        // XML 출력
+        out.println(xmlBuilder.toString());
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } finally {
+        // 리소스 정리
+        if (rs != null) {
+            try {
+                rs.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        if (pstmt != null) {
+            try {
+                pstmt.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        if (conn != null) {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+%>
+

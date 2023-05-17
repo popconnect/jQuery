@@ -1,0 +1,78 @@
+<%@ page language="java" contentType="text/xml; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="java.sql.*" %>
+<%
+  // MySQL 데이터베이스 연결 정보
+  String url = "jdbc:mysql://localhost:3306/db_name";
+  String username = "username";
+  String password = "password";
+
+  // 데이터베이스 연결
+  Connection conn = null;
+  PreparedStatement stmt = null;
+  ResultSet rs = null;
+
+  try {
+    Class.forName("com.mysql.jdbc.Driver");
+    conn = DriverManager.getConnection(url, username, password);
+
+    // SQL 쿼리 작성
+    String sql = "SELECT zipcode, sido, gugun, dong, ri, bunji FROM your_table";
+
+    // SQL 쿼리 실행
+    stmt = conn.prepareStatement(sql);
+    rs = stmt.executeQuery();
+
+    // XML 출력 시작
+    out.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+    out.println("<data>");
+
+    // 결과 반복문 처리
+    while (rs.next()) {
+      String zipcode = rs.getString("zipcode");
+      String sido = rs.getString("sido");
+      String gugun = rs.getString("gugun");
+      String dong = rs.getString("dong");
+      String ri = rs.getString("ri");
+      String bunji = rs.getString("bunji");
+
+      // XML 형식으로 데이터 출력
+      out.println("<record>");
+      out.println("<zipcode>" + zipcode + "</zipcode>");
+      out.println("<sido>" + sido + "</sido>");
+      out.println("<gugun>" + gugun + "</gugun>");
+      out.println("<dong>" + dong + "</dong>");
+      out.println("<ri>" + ri + "</ri>");
+      out.println("<bunji>" + bunji + "</bunji>");
+      out.println("</record>");
+    }
+
+    // XML 출력 종료
+    out.println("</data>");
+  } catch (Exception e) {
+    e.printStackTrace();
+  } finally {
+    // 연결과 자원 해제
+    if (rs != null) {
+      try {
+        rs.close();
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
+    }
+    if (stmt != null) {
+      try {
+        stmt.close();
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
+    }
+    if (conn != null) {
+      try {
+        conn.close();
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
+    }
+  }
+%>

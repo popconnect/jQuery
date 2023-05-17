@@ -1,0 +1,36 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="model1.ZipcodeTO" %>
+<%@ page import="model1.ZipcodeDAO" %>
+<%@ page import="java.util.ArrayList" %>
+<%
+	request.setCharacterEncoding("utf-8");
+	
+	String strDong = "대치";
+	
+	ZipcodeDAO dao = new ZipcodeDAO();
+	ArrayList<ZipcodeTO> lists = dao.zipcodeList(strDong);
+	
+	StringBuilder sbdong = new StringBuilder();
+	
+	for (ZipcodeTO to : lists) {
+		String zipcode = to.getZipcode();
+		String sido = to.getSido();
+		String gugun = to.getGugun();
+		String dong = to.getDong();
+		String ri = to.getRi();
+		String bunji = to.getBunji();
+		
+		sbdong.append("<address>");
+		sbdong.append("<zipcode>" + zipcode + "</zipcode>");
+		sbdong.append("<sido>" + sido + "</sido>");
+		sbdong.append("<gugun>" + gugun + "</gugun>");
+		sbdong.append("<dong>" + dong + "</dong>");
+		sbdong.append("<ri>" + ri + "</ri>");
+		sbdong.append("<bunji>" + bunji + "</bunji>");
+		sbdong.append("</address>");
+	}
+%>
+<addresses>
+<%=sbdong %>
+</addresses>

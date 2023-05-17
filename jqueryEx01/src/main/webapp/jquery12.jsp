@@ -1,0 +1,73 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script type="text/javascript">
+//window.jquery => jquery => $
+	$(document).ready(function() {
+		//$('tr').eq(0).css('width', '800');
+		//$('tr').first().css('color', 'blue');
+		//$('tr').last().css('color', 'blue');
+		$('tr').eq(-1).css('color', 'blue');
+	});
+
+	document.getElementById('btn1').onclick = function() {
+		//$('tr:odd').css('background-color', 'white');
+	//	$('tr:even').css('background-color', '#c0c0c0');
+		
+	//	$('tr:first').css('background-color', 'red');
+	
+		$('tr:nth-child(2n)').css('background-color', 'blue');
+		$('tr:nth-child(2n+1)').css('background-color', 'yellow');
+		$('tr:eq(0)').css('background-color', 'yellow');
+	}
+	document.getElementById('btn2').onclick = function() {
+		$('tr:odd').css('background-color', 'white');
+		$('tr:even').css('background-color', 'white');
+	}
+
+
+</script>
+</head>
+<body>
+<button id='btn1'>색상변경</button>
+<button id='btn2'>색상변경</button>
+<table>
+<tr>
+<th>이름</th>
+<th>혈액형</th>
+<th>지역</th>
+</tr>
+<tr>
+<th>tester</th>
+<th>a</th>
+<th>서울</th>
+</tr>
+<tr>
+<th>tester</th>
+<th>a</th>
+<th>서울</th>
+</tr>
+<tr>
+<th>tester</th>
+<th>a</th>
+<th>서울</th>
+</tr>
+<tr>
+<th>tester</th>
+<th>a</th>
+<th>서울</th>
+</tr>
+<tr>
+<th>tester</th>
+<th>a</th>
+<th>서울</th>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+.c {color: red;}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('button').on('click', function() {
+			$.ajax({
+				url: './Data/csv1.jsp',
+				type: 'get',
+				dataType: 'text',
+				success: function() {
+					console.log('성공');
+				},
+				error: function(err) {
+					console.log('실패' , err.status);
+				}
+			})
+		});
+	});
+</script>
+</head>
+<body>
+
+<button id="btn1">요청</button>
+<br><hr><br>
+
+</body>
+</html>

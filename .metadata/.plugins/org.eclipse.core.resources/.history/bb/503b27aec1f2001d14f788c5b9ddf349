@@ -1,0 +1,13 @@
+package model1;
+
+import java.util.ArrayList;
+
+public class ZipcodeDAO {
+	public ZipcodeDAO() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public ArrayList<ZipcodeTO> zipcodeList(String strDong) {
+		
+	}
+}

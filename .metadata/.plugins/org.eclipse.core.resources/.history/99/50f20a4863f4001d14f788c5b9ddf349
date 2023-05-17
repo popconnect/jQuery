@@ -1,0 +1,60 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="./css/cupertino/jquery-ui.css" />
+<style type="text/css">
+body {
+	font-size: 80%;
+}
+</style>
+<script type="text/javascript" src="./js/jquery-3.7.0.js"></script>
+<script type="text/javascript" src="./js/jquery-ui.js"></script>
+<script type="text/javascript">
+	//버튼 이벤트
+	$(document).ready(function() {
+		$('#start').spinner({
+			min: 1,
+			max: 9,
+			step: 1,
+			spin: function() {
+				//console.log( $(this).spinner('value'));
+			}
+		});
+		
+		$('#end').spinner({
+			min: 1,
+			max: 9,
+			step: 1,
+			spin: function() {
+				//console.log( $(this).spinner('value'));
+			}
+		});
+		
+		$('#btn').button().on('click', function() {
+			//console.log( $('#spinner').spinner('value'));
+			let startdan = $('#start').spinner('value');
+			let enddan = $('#end').spinner('value');
+			console.log(typeof startdan, enddan)
+			
+		})
+	});
+</script>
+</head>
+<body>
+	<fieldset>
+	<legend>구구단 출력</legend>
+		<label for="start">시작단</label>
+		<input type="text" id="start" value="1" readonly="readonly"/>
+		~
+		<input type="text" id="end" value="2" readonly="readonly"/>
+		<button id="btn">구구단 출력</button>
+	</fieldset>
+	<br><br><hr><br><br>
+	<div id="result"></div>
+
+</body>
+</html>

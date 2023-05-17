@@ -1,0 +1,9 @@
+package model1;
+
+public class ZipcodeTO {
+	private String sido;
+	private String gugun;
+	private String bunji;
+	private String dong;
+	private String ri;
+}

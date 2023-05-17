@@ -1,0 +1,31 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="./js/jquery-3.7.0.js"></script>
+<script type="text/javascript" src="./js/jquery-ui.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#R').slider({
+			value: 0,
+			min: 0,
+			max: 255,
+			step: 1,
+			slide: function(event, ui) {
+				$('rgbbox').css('background-color', 'rgb(' + r + ', ' + g + ', ' + b + ')');
+			}
+		});
+		
+	});
+</script>
+</head>
+<body>
+<div id="R"></div>
+<div id="G"></div>
+<div id="B"></div>
+<div id="rgbbox"></div>
+</body>
+</html>

@@ -1,0 +1,7 @@
+package model1;
+
+public class ZipcodeDAO {
+	public ZipcodeDAO() {
+		// TODO Auto-generated constructor stub
+	}
+}

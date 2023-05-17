@@ -1,0 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+[
+	{
+		"name" : "HTML5 + CSS3 입문",
+		"publisher" : "삼국미디어",
+		"author" : "유비",
+		"price" : "3000원"
+	}
+]

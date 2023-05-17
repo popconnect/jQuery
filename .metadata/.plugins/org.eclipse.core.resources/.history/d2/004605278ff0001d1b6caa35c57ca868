@@ -1,0 +1,53 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	window.onload = function() {
+		document.getElementById('btn').onclick = function() {
+			const request = new XMLHttpRequest();
+			
+			request.onreadystatechange = function() {
+				if (request.readyState == 4) {
+    				if (request.status == 200) {
+    					const data = request.responseText.trim();
+						const jsonData = JSON.parse(data);
+        
+        				const items = xmlDoc.getElementsByTagName("dailyBoxOffice");
+        
+				        let result = '<table border="1">';
+				        for (let i = 0; i < items.length; i++) {
+				            const rank = items[i].getElementsByTagName("rank")[0].textContent;
+				            const movieNM = items[i].getElementsByTagName("movieNm")[0].textContent;
+            
+				            result += '<tr>';
+				            result += '<td>' + rank + '</td>';
+				            result += '<td>' + movieNM + '</td>';
+				            result += '</tr>';
+        					}
+				        
+        				result += '</table>';
+        
+        				document.getElementById('result').innerHTML = result;
+    					} else {
+        				alert('페이지 오류');
+    					}
+				}
+			};
+			
+			request.open('GET', 'http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.xml?key=f5eef3421c602c6cb7ea224104795888&targetDt=20120101', true);
+			request.send();
+		};
+	};
+</script>
+</head>
+<body>
+	<button id='btn'>요청하기</button>
+	<br />
+	<textarea id='ta' rows="4" cols="100"></textarea>
+	<div id='result'></div>
+</body>
+</html>

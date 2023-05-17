@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+    <Resource name="jdbc/yourDataSourceName" auth="Container"
+              type="javax.sql.DataSource"
+              maxTotal="100" maxIdle="30" maxWaitMillis="10000"
+              username="your_username" password="your_password"
+              driverClassName="org.mariadb.jdbc.Driver"
+              url="jdbc:mariadb://your_host:your_port/your_database_name"/>
+</Context>
